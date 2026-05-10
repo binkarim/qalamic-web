@@ -1,0 +1,678 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>QALAMIC</title>
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: Arial, sans-serif;
+    }
+
+    body {
+      background: #f7faf7;
+      color: #1f2d2a;
+      line-height: 1.6;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    .container {
+      width: 90%;
+      max-width: 1200px;
+      margin: auto;
+    }
+
+    header {
+      background: white;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+
+    nav {
+      min-height: 78px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+    }
+
+    .logo {
+     display: flex;
+  align-items: center;
+  height: 58px;
+    }
+
+    .logo img {
+        height: 78px;
+  width: auto;
+  display: block;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 25px;
+      list-style: none;
+      font-weight: 600;
+    }
+
+    .nav-links a:hover {
+      color: #0f7a4f;
+    }
+
+    .nav-actions {
+      display: flex;
+      gap: 10px;
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 11px 22px;
+      border-radius: 30px;
+      background: #0f7a4f;
+      color: white;
+      font-weight: bold;
+      transition: 0.3s;
+      border: none;
+      cursor: pointer;
+    }
+
+    .btn:hover {
+      background: #0b5e3d;
+      transform: translateY(-2px);
+    }
+
+    .btn-outline {
+      background: transparent;
+      border: 2px solid #0f7a4f;
+      color: #0f7a4f;
+    }
+
+    .btn-outline:hover {
+      background: #0f7a4f;
+      color: white;
+    }
+
+    .hero {
+      min-height: 88vh;
+      display: flex;
+      align-items: center;
+      background:
+        linear-gradient(rgba(10, 66, 45, 0.78), rgba(10, 66, 45, 0.78)),
+        url("https://images.unsplash.com/photo-1609599006353-e629aaabfeae?auto=format&fit=crop&w=1600&q=80");
+      background-size: cover;
+      background-position: center;
+      color: white;
+    }
+
+    .hero-content {
+      max-width: 700px;
+    }
+
+    .hero h1 {
+      font-size: clamp(38px, 6vw, 68px);
+      line-height: 1.1;
+      margin-bottom: 20px;
+    }
+
+    .hero p {
+      font-size: 19px;
+      margin-bottom: 30px;
+      color: #eef7f1;
+    }
+
+    section {
+      padding: 80px 0;
+    }
+
+    .section-title {
+      text-align: center;
+      margin-bottom: 45px;
+    }
+
+    .section-title small {
+      color: #d59b21;
+      font-weight: bold;
+      text-transform: uppercase;
+    }
+
+    .section-title h2 {
+      font-size: 38px;
+      color: #123d31;
+      margin-top: 8px;
+    }
+
+    .updates {
+      background: white;
+    }
+
+    .update-box {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 25px;
+    }
+
+    .card {
+      background: white;
+      border-radius: 8px;
+      padding: 28px;
+      box-shadow: 0 8px 25px rgba(0,0,0,0.08);
+      transition: 0.3s;
+    }
+
+    .card:hover {
+      transform: translateY(-6px);
+    }
+
+    .card h3 {
+      color: #0f7a4f;
+      margin-bottom: 12px;
+    }
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 50px;
+      align-items: center;
+    }
+
+    .about-img img {
+      width: 100%;
+      border-radius: 8px;
+      box-shadow: 0 10px 35px rgba(0,0,0,0.15);
+    }
+
+    .about-text h2 {
+      font-size: 38px;
+      color: #123d31;
+      margin-bottom: 18px;
+    }
+
+    .mission {
+      margin-top: 22px;
+      padding-left: 18px;
+      border-left: 4px solid #d59b21;
+    }
+
+    .features {
+      background: #edf7f1;
+    }
+
+    .grid-4 {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 22px;
+    }
+
+    .feature-card {
+      background: white;
+      padding: 28px;
+      border-radius: 8px;
+      text-align: center;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.07);
+    }
+
+    .icon {
+      width: 58px;
+      height: 58px;
+      margin: 0 auto 18px;
+      border-radius: 50%;
+      background: #0f7a4f;
+      color: white;
+      display: grid;
+      place-items: center;
+      font-size: 26px;
+    }
+
+    .services-grid,
+    .courses-grid,
+    .testimonials-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 25px;
+    }
+
+    .course-card {
+      background: white;
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: 0 8px 25px rgba(0,0,0,0.08);
+    }
+
+    .course-card img {
+      width: 100%;
+      height: 190px;
+      object-fit: cover;
+    }
+
+    .course-content {
+      padding: 24px;
+    }
+
+    .badge {
+      display: inline-block;
+      background: #e8f5ee;
+      color: #0f7a4f;
+      padding: 6px 12px;
+      border-radius: 20px;
+      font-size: 13px;
+      margin-bottom: 12px;
+      font-weight: bold;
+    }
+
+    .testimonial {
+      background: #123d31;
+      color: white;
+      padding: 30px;
+      border-radius: 8px;
+    }
+
+    .testimonial h4 {
+      margin-top: 18px;
+      color: #f3bd3f;
+    }
+
+    .contact {
+      background: white;
+    }
+
+    .contact-box {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 35px;
+    }
+
+    form {
+      display: grid;
+      gap: 15px;
+    }
+
+    input,
+    textarea {
+      width: 100%;
+      padding: 14px;
+      border: 1px solid #d5ddd8;
+      border-radius: 6px;
+      font-size: 15px;
+    }
+
+    textarea {
+      min-height: 130px;
+      resize: vertical;
+    }
+
+    footer {
+      background: #0b2e25;
+      color: white;
+      padding: 50px 0 20px;
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr;
+      gap: 30px;
+      margin-bottom: 30px;
+    }
+
+    footer h3 {
+      margin-bottom: 15px;
+      color: #f3bd3f;
+    }
+
+    footer ul {
+      list-style: none;
+    }
+
+    footer li {
+      margin-bottom: 8px;
+      color: #dce9e2;
+    }
+
+    .copyright {
+      text-align: center;
+      border-top: 1px solid rgba(255,255,255,0.15);
+      padding-top: 20px;
+      color: #cbd8d2;
+    }
+
+    .whatsapp {
+      position: fixed;
+      right: 22px;
+      bottom: 22px;
+      width: 58px;
+      height: 58px;
+      border-radius: 50%;
+      background: #25d366;
+      color: white;
+      display: grid;
+      place-items: center;
+      font-size: 28px;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.25);
+      z-index: 999;
+    }
+
+    @media (max-width: 900px) {
+      nav {
+        flex-wrap: wrap;
+        padding: 15px 0;
+      }
+
+      .nav-links,
+      .nav-actions {
+        width: 100%;
+        justify-content: center;
+        flex-wrap: wrap;
+      }
+
+      .update-box,
+      .grid-4,
+      .services-grid,
+      .courses-grid,
+      .testimonials-grid,
+      .about-grid,
+      .contact-box,
+      .footer-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .hero {
+        text-align: center;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <header>
+    <div class="container">
+      <nav>
+        <div class="logo">
+          <img src="qalamic.jpeg" alt="QALAMIC logo">
+        </div>
+
+        <ul class="nav-links">
+          <li><a href="#home">Home</a></li>
+          <li><a href="#about">About</a></li>
+          <li><a href="#why">Why Us</a></li>
+          <li><a href="#courses">Courses</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+
+        <div class="nav-actions">
+          <a href="#" class="btn-outline btn">Student Login</a>
+          <a href="#contact" class="btn">Join Now</a>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <section class="hero" id="home">
+    <div class="container">
+      <div class="hero-content">
+        <h1>Discover the Beauty of Islamic Education</h1>
+        <p>
+          Learn Quran, Arabic, Madrassa subjects, and Islamic studies through live and flexible online classes.
+        </p>
+        <a href="#courses" class="btn">Explore Courses</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="updates">
+    <div class="container">
+      <div class="section-title">
+        <small>Latest Updates</small>
+        <h2>News & Announcements</h2>
+      </div>
+
+      <div class="update-box">
+        <div class="card">
+          <h3>Weekly Spiritual Session</h3>
+          <p>Join our special weekly online gathering for reflection, character building, and Islamic reminders.</p>
+        </div>
+
+        <div class="card">
+          <h3>New Admissions Open</h3>
+          <p>Admissions are now open for Quran, Tajweed, Arabic, and Madrassa tuition programs.</p>
+        </div>
+
+        <div class="card">
+          <h3>Online Classes</h3>
+          <p>Flexible learning options are available for children, teens, and adults from anywhere in the world.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="about">
+    <div class="container about-grid">
+      <div class="about-img">
+        <img src="https://images.unsplash.com/photo-1542816417-0983c9c9ad53?auto=format&fit=crop&w=900&q=80" alt="Islamic education">
+      </div>
+
+      <div class="about-text">
+        <h2>High Level of Islamic Online Education</h2>
+        <p>
+          QALAMIC is an online learning platform dedicated to providing quality Islamic education with care,
+          discipline, and modern teaching methods.
+        </p>
+
+        <div class="mission">
+          <h3>Our Mission</h3>
+          <p>To become a leading online academy that inspires and empowers students through a balanced education system that combines moral values, character building, and academic excellence. Qalamic Academy envisions nurturing a generation that is intellectually capable, ethically grounded, spiritually aware, and socially responsible.We aim to create learners who not only succeed in their studies and careers, but also contribute positively to their families, communities, and society as compassionate, disciplined, and value-driven individuals. Through accessible and innovative digital learning, Qalamic Academy strives to make meaningful education available to students across the world, regardless of their background or location.</p>
+        </div>
+
+        <div class="mission">
+          <h3>Our Vision</h3>
+          <p>To make authentic and accessible Islamic education available to learners around the world.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="features" id="why">
+    <div class="container">
+      <div class="section-title">
+        <small>Why Choose Us</small>
+        <h2>Why Choose Our Institute</h2>
+      </div>
+
+      <div class="grid-4">
+        <div class="feature-card">
+          <div class="icon">📘</div>
+          <h3>Quality Education</h3>
+          <p>Structured lessons taught by experienced teachers.</p>
+        </div>
+
+        <div class="feature-card">
+          <div class="icon">💻</div>
+          <h3>Flexible Learning</h3>
+          <p>Attend classes from home with convenient schedules.</p>
+        </div>
+
+        <div class="feature-card">
+          <div class="icon">🌙</div>
+          <h3>Spiritual Growth</h3>
+          <p>Learning focused on knowledge, manners, and values.</p>
+        </div>
+
+        <div class="feature-card">
+          <div class="icon">👨‍🏫</div>
+          <h3>Expert Tutors</h3>
+          <p>Qualified instructors who support every student.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="container">
+      <div class="section-title">
+        <small>What We Offer</small>
+        <h2>Arabic & Quran Services</h2>
+      </div>
+
+      <div class="services-grid">
+        <div class="card">
+          <h3>Comprehensive Courses</h3>
+          <p>Courses in Quran recitation, Tajweed, Arabic, Fiqh, Hadith, and Islamic manners.</p>
+        </div>
+
+        <div class="card">
+          <h3>Personal Support</h3>
+          <p>Students receive regular guidance, feedback, and progress tracking from teachers.</p>
+        </div>
+
+        <div class="card">
+          <h3>Community Learning</h3>
+          <p>A positive learning environment for students and families to grow together.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="features" id="courses">
+    <div class="container">
+      <div class="section-title">
+        <small>Popular Courses</small>
+        <h2>Our Popular Courses</h2>
+      </div>
+
+      <div class="courses-grid">
+        <div class="course-card">
+          <img src="https://images.unsplash.com/photo-1585036156171-384164a8c675?auto=format&fit=crop&w=900&q=80" alt="Quran Tajweed">
+          <div class="course-content">
+            <span class="badge">Live Class</span>
+            <h3>Quran Tajweed</h3>
+            <p>Learn correct Quran recitation with Tajweed rules and guided practice.</p>
+            <br>
+            <a href="#contact" class="btn">Join Now</a>
+          </div>
+        </div>
+
+        <div class="course-card">
+          <img src="https://images.unsplash.com/photo-1519817650390-64a93db51149?auto=format&fit=crop&w=900&q=80" alt="Arabic course">
+          <div class="course-content">
+            <span class="badge">Online</span>
+            <h3>Basic Arabic</h3>
+            <p>Start reading, writing, and understanding Arabic with simple lessons.</p>
+            <br>
+            <a href="#contact" class="btn">Join Now</a>
+          </div>
+        </div>
+
+        <div class="course-card">
+          <img src="https://images.unsplash.com/photo-1604881991720-f91add269bed?auto=format&fit=crop&w=900&q=80" alt="Madrassa">
+          <div class="course-content">
+            <span class="badge">Live Class</span>
+            <h3>Madrassa Tuition</h3>
+            <p>Complete Madrassa support for Islamic studies, duas, fiqh, and akhlaq.</p>
+            <br>
+            <a href="#contact" class="btn">Join Now</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="container">
+      <div class="section-title">
+        <small>Testimonials</small>
+        <h2>Trusted By Students</h2>
+      </div>
+
+      <div class="testimonials-grid">
+        <div class="testimonial">
+          <p>“The classes are clear, friendly, and very useful for children. The teachers explain patiently.”</p>
+          <h4>Parent Review</h4>
+        </div>
+
+        <div class="testimonial">
+          <p>“A good platform for learning Quran and Arabic from home with regular support.”</p>
+          <h4>Student Review</h4>
+        </div>
+
+        <div class="testimonial">
+          <p>“The timetable is flexible and the lessons are easy to follow. Highly recommended.”</p>
+          <h4>Guardian Review</h4>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="contact" id="contact">
+    <div class="container">
+      <div class="section-title">
+        <small>Contact Us</small>
+        <h2>Book an Appointment</h2>
+      </div>
+
+      <div class="contact-box">
+        <div>
+          <h3>QALAMIC</h3>
+          <p>Online Islamic education for students worldwide.</p>
+          <br>
+          <p><strong>Phone:</strong> +91 9061831337</p>
+          <p><strong>Email:</strong> qalamicacdmy@gmail.com</p>
+          <p><strong>Address:</strong> Kerala, India</p>
+        </div>
+
+        <form>
+          <input type="text" placeholder="Full Name" required>
+          <input type="tel" placeholder="WhatsApp Number" required>
+          <input type="email" placeholder="Email Address" required>
+          <input type="text" placeholder="Place">
+          <textarea placeholder="Purpose of Appointment"></textarea>
+          <button class="btn" type="submit">Submit</button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container footer-grid">
+      <div>
+        <h3>QALAMIC</h3>
+        <p>Providing quality Quran, Arabic, and Islamic education through online learning.</p>
+      </div>
+
+      <div>
+        <h3>Links</h3>
+        <ul>
+          <li>About Us</li>
+          <li>Courses</li>
+          <li>Faculties</li>
+          <li>Latest News</li>
+        </ul>
+      </div>
+
+      <div>
+        <h3>Other Links</h3>
+        <ul>
+          <li>Privacy Policy</li>
+          <li>Terms & Conditions</li>
+          <li>Refund Policy</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="copyright">
+      Copyright © 2026 QALAMIC. All Rights Reserved.
+    </div>
+  </footer>
+
+  <a class="whatsapp" href="https://wa.me/919061831337" target="_blank">☏</a>
+
+</body>
+</html>
