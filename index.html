@@ -311,6 +311,27 @@
       resize: vertical;
     }
 
+    .form-message {
+      padding: 12px;
+      border-radius: 6px;
+      margin-bottom: 10px;
+      display: none;
+    }
+
+    .form-message.success {
+      background: #d4edda;
+      color: #155724;
+      display: block;
+      border: 1px solid #c3e6cb;
+    }
+
+    .form-message.error {
+      background: #f8d7da;
+      color: #721c24;
+      display: block;
+      border: 1px solid #f5c6cb;
+    }
+
     footer {
       background: #0b2e25;
       color: white;
@@ -459,7 +480,7 @@
         
    <div class="card">
           <h3>Hifzul-al-Quran</h3>
-          <p>Mastery of Qur’an memorization with proper tajwīd, understanding, and consistent revision under expert guidance.</p>
+          <p>Mastery of Qur'an memorization with proper tajwīd, understanding, and consistent revision under expert guidance.</p>
       </div>
         
    </div>
@@ -481,12 +502,12 @@
 
         <div class="mission">
           <h3>Our Mission</h3>
-          <p>To become a leading online academy that inspires and empowers students through a balanced education system that combines moral values, character building, and academic excellence. Qalamic Academy envisions nurturing a generation that is intellectually capable, ethically grounded, spiritually aware, and socially responsible.</p>
+          <p>To become a leading online academy that inspires and empowers students through a balanced education system that combines moral values, character building, and academic excellence. Qalamic[...]
         </div>
 
         <div class="mission">
           <h3>Our Vision</h3>
-          <p>At Qalamic Academy, our mission is to provide a comprehensive online learning platform that develops both the mind and character of every student. We are committed to delivering high-quality education that integrates moral teachings with modern academic learning in a way that is engaging, practical, and impactful.</p>
+          <p>At Qalamic Academy, our mission is to provide a comprehensive online learning platform that develops both the mind and character of every student. We are committed to delivering high-qual[...]
         </div>
       </div>
     </div>
@@ -619,17 +640,17 @@
 
       <div class="testimonials-grid">
         <div class="testimonial">
-          <p>“The classes are clear, friendly, and very useful for children. The teachers explain patiently.”</p>
+          <p>"The classes are clear, friendly, and very useful for children. The teachers explain patiently."</p>
           <h4>Parent Review</h4>
         </div>
 
         <div class="testimonial">
-          <p>“A good platform for learning Quran and Arabic from home with regular support.”</p>
+          <p>"A good platform for learning Quran and Arabic from home with regular support."</p>
           <h4>Student Review</h4>
         </div>
 
         <div class="testimonial">
-          <p>“The timetable is flexible and the lessons are easy to follow. Highly recommended.”</p>
+          <p>"The timetable is flexible and the lessons are easy to follow. Highly recommended."</p>
           <h4>Guardian Review</h4>
         </div>
       </div>
@@ -653,12 +674,13 @@
           <p><strong>Address:</strong> Kerala, India</p>
         </div>
 
-        <form>
-          <input type="text" placeholder="Full Name" required>
-          <input type="tel" placeholder="WhatsApp Number" required>
-          <input type="email" placeholder="Email Address" required>
-          <input type="text" placeholder="Place">
-          <textarea placeholder="Purpose of Appointment"></textarea>
+        <form id="appointmentForm" action="https://formspree.io/f/mbdwwvly" method="POST">
+          <div class="form-message" id="formMessage"></div>
+          <input type="text" name="fullName" id="fullName" placeholder="Full Name" required>
+          <input type="tel" name="whatsappNumber" id="whatsappNumber" placeholder="WhatsApp Number" required>
+          <input type="email" name="email" id="email" placeholder="Email Address" required>
+          <input type="text" name="place" id="place" placeholder="Place">
+          <textarea name="purpose" id="purpose" placeholder="Purpose of Appointment"></textarea>
           <button class="btn" type="submit">Submit</button>
         </form>
       </div>
